@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Segmentation Results</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f0f8ff;
+            transition: background-color 0.3s, color 0.3s;
+            height: 100vh;
+            margin: 0;
+        }
+        h1 {
+            margin: 20px 0;
+            font-size: 2.5em;
+        }
+        #controls {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        #scatter-plot-container {
+            flex-grow: 1;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #scatter-plot {
+            width: 90%;
+            height: 90%;
+            border: none;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 5px;
+            background-color: #333;
+            color: white;
+            border: none;
+        }
+        button:hover {
+            opacity: 0.8;
+        }
+        .dark-mode {
+            background-color: #333;
+            color: white;
+        }
+    </style>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <div id="controls">
+        <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
+    </div>
+    <h1>Segmentation Results</h1>
+    <div id="scatter-plot-container">
+        <div id="scatter-plot"></div>
+    </div>
+    <script>
+        var graphJSON = {{ graphJSON | safe }};
+        Plotly.newPlot('scatter-plot', graphJSON.data, graphJSON.layout);
+
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            var layoutUpdate = {
+                paper_bgcolor: document.body.classList.contains('dark-mode') ? '#333' : '#f0f8ff',
+                plot_bgcolor: document.body.classList.contains('dark-mode') ? '#333' : '#f0f8ff',
+                font: { color: document.body.classList.contains('dark-mode') ? 'white' : 'black' }
+            };
+            Plotly.relayout('scatter-plot', layoutUpdate);
+        }
+    </script>
+</body>
+</html>

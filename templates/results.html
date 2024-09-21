@@ -32,8 +32,8 @@
             align-items: center;
         }
         #scatter-plot {
-            width: 90%;
-            height: 90%;
+            width: 95%;
+            height: 90vh;
             border: none;
         }
         button {
@@ -52,6 +52,10 @@
             background-color: #333;
             color: white;
         }
+        .accuracy {
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
     </style>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
@@ -63,6 +67,12 @@
     <div id="scatter-plot-container">
         <div id="scatter-plot"></div>
     </div>
+
+    <!-- Accuracy Section -->
+    <div class="accuracy">
+        <p>Model Accuracy: {{ accuracy }}</p>
+    </div>
+
     <script>
         var graphJSON = {{ graphJSON | safe }};
         Plotly.newPlot('scatter-plot', graphJSON.data, graphJSON.layout);

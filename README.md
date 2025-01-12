@@ -1,4 +1,4 @@
-CUSTOMER SEGMENTATION AND CLUSTERING COMPARISON 
+CUSTOMER SEGMENTATION AND CLUSTERING COMPARISON | 
 The customer segmentation project utilizes RFM (Recency, Frequency, Monetary) analysis and
 clustering algorithms to address the challenges of generic marketing approaches by providing
 data-driven customer insights. Traditional marketing often fails to engage customers
